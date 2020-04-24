@@ -167,6 +167,11 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     XiaomiParts
 
+# Device mapper verity
+PRODUCT_SYSTEM_VERITY_PARTITION=/dev/block/bootdevice/by-name/system
+PRODUCT_VENDOR_VERITY_PARTITION=/dev/block/bootdevice/by-name/cust
+$(call inherit-product, build/target/product/verity.mk)
+
 # Display
 PRODUCT_PACKAGES += \
     android.hardware.graphics.allocator@2.0-impl:64 \
@@ -432,7 +437,10 @@ PRODUCT_PACKAGES += \
     android.hardware.usb@1.0-service.basic
 
 # VNDK
-PRODUCT_PACKAGES += vndk-sp
+PRODUCT_PACKAGES +=
+    libstdc++.vendor \
+    vndk-ext \
+    vndk_package
 
 # Wifi
 PRODUCT_PACKAGES += \
